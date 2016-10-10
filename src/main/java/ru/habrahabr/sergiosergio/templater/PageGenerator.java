@@ -3,7 +3,7 @@ package ru.habrahabr.sergiosergio.templater;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-//import freemarker.template.TemplateException;
+import freemarker.template.TemplateException;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,6 @@ public class PageGenerator {
     public static PageGenerator instance(){
         if (pageGenerator == null){
             pageGenerator = new PageGenerator();
-            //return pageGenerator;
         }
         return pageGenerator;
     }
@@ -32,7 +31,8 @@ public class PageGenerator {
         Writer stream = new StringWriter();
         try{
             Template template = cfg.getTemplate(HTML_DIR + File.separator + filename);
-        }catch (IOException e) {
+            template.process(data, stream);
+        }catch (IOException | TemplateException e) {
             e.printStackTrace();
 
         }
