@@ -23,6 +23,7 @@ public class PageGenerator {
     public static PageGenerator instance(){
         if (pageGenerator == null){
             pageGenerator = new PageGenerator();
+            //return pageGenerator;
         }
         return pageGenerator;
     }
