@@ -19,19 +19,19 @@ public class MirrorRequestServlet extends HttpServlet{
                        HttpServletResponse response) throws ServletException, IOException {
 
         Map<String, Object> pageVariables = createPageVariablesMap(request);
-        String message = request.getParameter("message");
+        String message = request.getParameter("key");
         response.setContentType("text/html;charset=utf-8");
-        if (message == null || message.equals("")){
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        }else{
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
-        pageVariables.put("message", message == null ? "" : message);
+        //if (message == null || message.equals("")){
+         //
+        //   message = "empty message";
+        //}
+        response.setStatus(HttpServletResponse.SC_OK);
+        pageVariables.put("message", message);
 
         response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
 
         response.setContentType("text/html;charset=utf-8");
-        response.setStatus(HttpServletResponse.SC_OK);
+        //response.setStatus(HttpServletResponse.SC_OK);
     }
 
     public void doPost (HttpServletRequest request,
