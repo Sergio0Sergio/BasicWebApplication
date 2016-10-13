@@ -31,7 +31,7 @@ public class MirrorRequestServlet extends HttpServlet{
         //response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
         response.getWriter().println(request.getParameter("key"));
 
-        response.setContentType("text/html;charset=utf-8");
+        //response.setContentType("text/html;charset=utf-8");
         //response.setStatus(HttpServletResponse.SC_OK);
     }
 
