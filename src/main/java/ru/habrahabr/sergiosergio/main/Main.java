@@ -3,9 +3,8 @@ package ru.habrahabr.sergiosergio.main;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-
-import ru.habrahabr.sergiosergio.servlets.AllRequestsServlet;
-import ru.habrahabr.sergiosergio.servlets.MirrorRequestServlet;
+import ru.habrahabr.sergiosergio.accounts.AccountService;
+import ru.habrahabr.sergiosergio.accounts.UserProfile;
 
 import java.util.logging.Logger;
 
@@ -19,11 +18,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Logger logger = Logger.getLogger(Main.class.getName());
-        AllRequestsServlet allRequestsServlet = new AllRequestsServlet();
-        MirrorRequestServlet mirrorRequestServlet = new MirrorRequestServlet();
 
-        ServletContextHandler context1 = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context1.addServlet(new ServletHolder(allRequestsServlet), "/");
+        AccountService accountService = new AccountService();
+
+        accountService.addNewUser(new UserProfile("admin"));
+        accountService.addNewUser(new UserProfile("test"));
+
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context.addServlet(new ServletHolder(new UserServlet(accountService)), "/api/v1/users");
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(mirrorRequestServlet), "/mirror");
