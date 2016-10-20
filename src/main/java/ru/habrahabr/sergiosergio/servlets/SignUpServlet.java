@@ -14,8 +14,10 @@ import java.io.IOException;
  * Created by sgrimanov on 19.10.2016.
  */
 public class SignUpServlet extends HttpServlet {
-
     private final AccountService accountService;
+    public SignUpServlet(AccountService accountService){
+        this.accountService = accountService;
+    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user = request.getParameter("user");

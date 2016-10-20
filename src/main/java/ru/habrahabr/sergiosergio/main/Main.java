@@ -5,6 +5,8 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import ru.habrahabr.sergiosergio.accounts.AccountService;
 import ru.habrahabr.sergiosergio.accounts.UserProfile;
+import ru.habrahabr.sergiosergio.servlets.SignInServlet;
+import ru.habrahabr.sergiosergio.servlets.SignUpServlet;
 import ru.habrahabr.sergiosergio.servlets.UsersServlet;
 
 import java.util.logging.Logger;
@@ -26,10 +28,10 @@ public class Main {
         accountService.addNewUser(new UserProfile("test"));
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(new UsersServlet(accountService)), "/api/v1/users");
+        context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
 
-        //ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        //context.addServlet(new ServletHolder(mirrorRequestServlet), "/mirror");
+        ServletContextHandler context1 = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context1.addServlet(new ServletHolder(new SignInServlet(accountService)), "/sighnin");
 
         Server server = new Server(8080);
         server.setHandler(context);
