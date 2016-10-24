@@ -14,7 +14,6 @@ import java.io.IOException;
  * Created by sgrimanov on 19.10.2016.
  */
 public class SignUpServlet extends HttpServlet {
-
     private final AccountService accountService;
     public SignUpServlet(AccountService accountService){
         this.accountService = accountService;
