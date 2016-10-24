@@ -20,6 +20,11 @@ public class UserProfile {
         this.pass = login;
         this.email = login;
     }
+    public UserProfile(String login, String pass){
+        this.login = login;
+        this.pass = pass;
+        this.email = login;
+    }
 
     public String getLogin(){
         return login;

@@ -22,14 +22,15 @@ public class SignUpServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
-        String email = request.getParameter("email");
+        //String email = request.getParameter("email");
         response.setContentType("text/html;charset=utf-8");
 
         if (user == null){
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         } else {
-            UserProfile profile = new UserProfile(user, pass, email);
+            if (pass == null){pass = user;}
+            UserProfile profile = new UserProfile(user, pass);
             accountService.addNewUser(profile);
             response.setStatus(HttpServletResponse.SC_OK);
         }
