@@ -16,17 +16,22 @@ import java.io.IOException;
 public class SignUpServlet extends HttpServlet {
 
     private final AccountService accountService;
+    public SignUpServlet(AccountService accountService){
+        this.accountService = accountService;
+    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
+        String email = request.getParameter("email");
         response.setContentType("text/html;charset=utf-8");
 
         if (user == null){
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         } else {
-            accountService.addNewUser(new UserProfile(user));
+            UserProfile profile = new UserProfile(user, pass, email);
+            accountService.addNewUser(profile);
             response.setStatus(HttpServletResponse.SC_OK);
         }
     }
