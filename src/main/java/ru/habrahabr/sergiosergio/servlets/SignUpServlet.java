@@ -29,7 +29,9 @@ public class SignUpServlet extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         } else {
-            if (pass == null){pass = user;}
+            if (pass == null){
+                pass = user;
+            }
             UserProfile profile = new UserProfile(user, pass);
             accountService.addNewUser(profile);
             response.setStatus(HttpServletResponse.SC_OK);
