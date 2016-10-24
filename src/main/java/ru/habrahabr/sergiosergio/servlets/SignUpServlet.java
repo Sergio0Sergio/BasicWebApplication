@@ -20,19 +20,19 @@ public class SignUpServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
         //String email = request.getParameter("email");
         response.setContentType("text/html;charset=utf-8");
 
-        if (user == null){
+        if (login == null){
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         } else {
-            if (pass == null){
-                pass = user;
-            }
-            UserProfile profile = new UserProfile(user, pass);
+            /*if (password == null){
+                password = login;
+            }*/
+            UserProfile profile = new UserProfile(login, password);
             accountService.addNewUser(profile);
             response.setStatus(HttpServletResponse.SC_OK);
         }

@@ -21,17 +21,17 @@ public class SignInServlet extends HttpServlet {
 
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        account = accountService.getUserByLogin(user);
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        account = accountService.getUserByLogin(login);
 
         response.setContentType("text/html;charset=utf-8");
-        if (accountService.getUserByLogin("user") != null && pass == account.getPass()){
+        if (accountService.getUserByLogin("login") != null){
 
             response.setStatus(401);
             return;
         }
-        response.getWriter().println("Authorized: "+user);
+        response.getWriter().println("Authorized: "+login);
         response.setStatus(200);
 
 
