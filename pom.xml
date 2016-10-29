@@ -12,6 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <com.h2database.h2.version>1.4.192</com.h2database.h2.version>
+    <org.hibernate.hibernate-core.version>5.2.3.Final</org.hibernate.hibernate-core.version>
   </properties>
 
   <build>
@@ -76,6 +78,16 @@
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.7</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.192</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.2.3.Final</version>
     </dependency>
     </dependencies>
 </project>

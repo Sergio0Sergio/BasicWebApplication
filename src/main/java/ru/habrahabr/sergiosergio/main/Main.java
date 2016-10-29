@@ -5,6 +5,9 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import ru.habrahabr.sergiosergio.accounts.AccountService;
 import ru.habrahabr.sergiosergio.accounts.UserProfile;
+import ru.habrahabr.sergiosergio.dbService.DBException;
+import ru.habrahabr.sergiosergio.dbService.DBService;
+import ru.habrahabr.sergiosergio.dbService.dataSets.UsersDataSet;
 import ru.habrahabr.sergiosergio.servlets.SignInServlet;
 import ru.habrahabr.sergiosergio.servlets.SignUpServlet;
 import ru.habrahabr.sergiosergio.servlets.UsersServlet;
@@ -22,19 +25,28 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Logger logger = Logger.getLogger(Main.class.getName());
 
-        AccountService accountService = new AccountService();
+        DBService dbService = new DBService();
+        dbService.printConnectInfo();
 
-        //accountService.addNewUser(new UserProfile("admin"));
-        //accountService.addNewUser(new UserProfile("test"));
+        try {
+            long userId = dbService.addUser("tully");
+            System.out.println("Added user id: " + userId);
 
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
-        context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
+            UsersDataSet dataSet = dbService.getUser(userId);
+            System.out.println("User data set: " + dataSet);
 
-        Server server = new Server(8080);
-        server.setHandler(context);
-        server.start();
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
         logger.info("Server started");
-        server.join();
     }
+
+
+
+        //Server server = new Server(8080);
+        //server.setHandler(context);
+        //server.start();
+
+        //server.join();
+
 }
