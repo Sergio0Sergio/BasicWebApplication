@@ -71,18 +71,18 @@ public class DBService {
         }
     }
 
-    public void printConnectInfo() {
-        try {
-            SessionFactoryImpl sessionFactoryImpl = (SessionFactoryImpl) sessionFactory;
-            Connection connection = sessionFactoryImpl.getConnectionProvider().getConnection();
-            System.out.println("DB name: " + connection.getMetaData().getDatabaseProductName());
-            System.out.println("DB version: " + connection.getMetaData().getDatabaseProductVersion());
-            System.out.println("Driver: " + connection.getMetaData().getDriverName());
-            System.out.println("Autocommit: " + connection.getAutoCommit());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void printConnectInfo() {
+//        try {
+//            SessionFactoryImpl sessionFactoryImpl = (SessionFactoryImpl) sessionFactory;
+//            Connection connection = sessionFactoryImpl.getConnectionProvider().getConnection();
+//            System.out.println("DB name: " + connection.getMetaData().getDatabaseProductName());
+//            System.out.println("DB version: " + connection.getMetaData().getDatabaseProductVersion());
+//            System.out.println("Driver: " + connection.getMetaData().getDriverName());
+//            System.out.println("Autocommit: " + connection.getAutoCommit());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private static SessionFactory createSessionFactory(Configuration configuration) {
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();

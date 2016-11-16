@@ -1,6 +1,9 @@
 package ru.habrahabr.sergiosergio.main;
 
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import ru.habrahabr.sergiosergio.accounts.AccountService;
@@ -8,6 +11,7 @@ import ru.habrahabr.sergiosergio.accounts.UserProfile;
 import ru.habrahabr.sergiosergio.dbService.DBException;
 import ru.habrahabr.sergiosergio.dbService.DBService;
 import ru.habrahabr.sergiosergio.dbService.dataSets.UsersDataSet;
+import ru.habrahabr.sergiosergio.servlets.SessionsServlet;
 import ru.habrahabr.sergiosergio.servlets.SignInServlet;
 import ru.habrahabr.sergiosergio.servlets.SignUpServlet;
 import ru.habrahabr.sergiosergio.servlets.UsersServlet;
@@ -26,7 +30,7 @@ public class Main {
         Logger logger = Logger.getLogger(Main.class.getName());
 
         DBService dbService = new DBService();
-        dbService.printConnectInfo();
+        //dbService.printConnectInfo();
 
         try {
             long userId = dbService.addUser("tully");
@@ -42,11 +46,19 @@ public class Main {
     }
 
 
-
-        Server server = new Server(8080);
-        server.setHandler(context);
-        server.start();
-
-        server.join();
+//    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+//        context.addServlet(new ServletHolder(new SignUpServlet(dbServise)), "/api/v1/users");
+//        context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/api/v1/sessions");
+//
+//    ResourceHandler resource_handler = new ResourceHandler();
+//        resource_handler.setResourceBase("public_html");
+//
+//    HandlerList handlers = new HandlerList();
+//        handlers.setHandlers(new Handler[]{resource_handler, context});
+//        Server server = new Server(8080);
+//        server.setHandler(context);
+//        server.start();
+//
+//        server.join();
 
 }
