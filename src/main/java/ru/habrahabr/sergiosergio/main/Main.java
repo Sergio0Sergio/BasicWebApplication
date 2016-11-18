@@ -16,6 +16,7 @@ import ru.habrahabr.sergiosergio.servlets.SignInServlet;
 import ru.habrahabr.sergiosergio.servlets.SignUpServlet;
 import ru.habrahabr.sergiosergio.servlets.UsersServlet;
 
+import javax.servlet.Servlet;
 import java.util.logging.Logger;
 
 
@@ -43,22 +44,13 @@ public class Main {
             e.printStackTrace();
         }
         logger.info("Server started");
+
+        ServletContextHandler context = new ServletContextHandler (ServletContextHandler.SESSIONS);
+        context.addServlet(new ServletHolder(new SignUpServlet(dbService)), "/signup");
+        context.addServlet(new ServletHolder(new SignInServlet(dbService)), "/signup");
     }
 
 
-//    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-//        context.addServlet(new ServletHolder(new SignUpServlet(dbServise)), "/api/v1/users");
-//        context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/api/v1/sessions");
-//
-//    ResourceHandler resource_handler = new ResourceHandler();
-//        resource_handler.setResourceBase("public_html");
-//
-//    HandlerList handlers = new HandlerList();
-//        handlers.setHandlers(new Handler[]{resource_handler, context});
-//        Server server = new Server(8080);
-//        server.setHandler(context);
-//        server.start();
-//
-//        server.join();
+
 
 }

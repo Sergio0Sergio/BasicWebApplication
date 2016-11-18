@@ -57,18 +57,33 @@ public class DBService {
 
     }
 
-    public long addUser(String name) throws DBException {
+    public long addUser(String name, String password) throws DBException {
         try {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
             UsersDao dao = new UsersDao(session);
-            long id = dao.insertUser(name);
+            long id = dao.insertUser(name, password);
             transaction.commit();
             session.close();
             return id;
         } catch (HibernateException e) {
             throw new DBException(e);
         }
+    }
+
+    public UsersDataSet getUserByName(String name) throws DBException {
+        try {
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+            UsersDao dao = new UsersDao(session);
+            UsersDataSet dataSet= dao.getUserByName(name);
+            transaction.commit();
+            session.close();
+            return dataSet;
+        } catch (HibernateException e) {
+            throw new DBException(e);
+        }
+
     }
 
 //    public void printConnectInfo() {

@@ -19,6 +19,11 @@ public class UsersDataSet implements Serializable {
     @Column(name = "name", unique = true, updatable = false)
     private String name;
 
+
+
+    @Column(name = "password")
+    private String password;
+
     @SuppressWarnings("UnusedDeclaration")
     public UsersDataSet(){
     }
@@ -27,6 +32,13 @@ public class UsersDataSet implements Serializable {
     public UsersDataSet(long id, String name){
         this.setId(id);
         this.setName(name);
+    }
+
+    @SuppressWarnings("UnusedDeclaration")
+    public UsersDataSet(String name, String password){
+        //this.setId(id);
+        this.setName(name);
+        this.setPassword(password);
     }
 
     @SuppressWarnings("UnusedDeclaration")
@@ -51,6 +63,12 @@ public class UsersDataSet implements Serializable {
     public void setId(long id){
         this.id = id;
     }
+
+    public String getPassword() {return password;}
+
+    public void setPassword(String password) {this.password = password;}
+
+
 
     @Override
     public String toString() {
