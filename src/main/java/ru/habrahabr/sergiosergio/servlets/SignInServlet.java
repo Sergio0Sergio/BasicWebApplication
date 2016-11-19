@@ -4,6 +4,8 @@ import ru.habrahabr.sergiosergio.accounts.AccountService;
 import ru.habrahabr.sergiosergio.accounts.UserProfile;
 import ru.habrahabr.sergiosergio.dbService.DBException;
 import ru.habrahabr.sergiosergio.dbService.DBService;
+import ru.habrahabr.sergiosergio.dbService.dao.UsersDao;
+import ru.habrahabr.sergiosergio.dbService.dataSets.UsersDataSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,10 +30,12 @@ public class SignInServlet extends HttpServlet {
         //account = accountService.getUserByLogin(login);
 
         response.setContentType("text/html;charset=utf-8");
+        String name = "nouser";
         try {
-            String name = dbService.getUserByName(login).getName();
+            name = dbService.getUserByName(login).getName();
+
         } catch (DBException e) {}
-        if ( name != null){
+        if (  name != "nouser"){
 
             response.setStatus(401);
             return;
