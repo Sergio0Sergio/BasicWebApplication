@@ -11,10 +11,7 @@ import ru.habrahabr.sergiosergio.accounts.UserProfile;
 import ru.habrahabr.sergiosergio.dbService.DBException;
 import ru.habrahabr.sergiosergio.dbService.DBService;
 import ru.habrahabr.sergiosergio.dbService.dataSets.UsersDataSet;
-import ru.habrahabr.sergiosergio.servlets.SessionsServlet;
-import ru.habrahabr.sergiosergio.servlets.SignInServlet;
-import ru.habrahabr.sergiosergio.servlets.SignUpServlet;
-import ru.habrahabr.sergiosergio.servlets.UsersServlet;
+import ru.habrahabr.sergiosergio.servlets.*;
 
 import javax.servlet.Servlet;
 import java.util.logging.Logger;
@@ -43,7 +40,7 @@ public class Main {
         } catch (DBException e) {
             e.printStackTrace();
         }
-        logger.info("Server started");
+
 
         ServletContextHandler context = new ServletContextHandler (ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(new SignUpServlet(dbService)), "/signup");
@@ -63,6 +60,7 @@ public class Main {
 
         server.start();
         server.join();
+        logger.info("Server started");
     }
 
 

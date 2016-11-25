@@ -21,7 +21,7 @@ public class ChatWebSocket {
 
     @OnWebSocketConnect
     public void onOpen (Session session){
-        ChatService.add(this);
+        chatService.add(this);
         this.session = session;
     }
 

@@ -2,6 +2,8 @@ package ru.habrahabr.sergiosergio.servlets;
 
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
+import ru.habrahabr.sergiosergio.chat.ChatService;
+import ru.habrahabr.sergiosergio.chat.ChatWebSocket;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -13,7 +15,7 @@ public class WebSocketChatServlet extends WebSocketServlet {
     private final static int LOGOUT_TIME = 10 * 60 * 1000;
     private final ChatService chatService;
 
-    public WebSocketServlet(){
+    public WebSocketChatServlet(){
         this.chatService = new ChatService();
     }
 
