@@ -29,7 +29,7 @@ public class UsersDao {
 
     public UsersDataSet getUserByName(String name) throws HibernateException{
         //Criteria criteria = session.createCriteria(UsersDataSet.class);
-        return ((UsersDataSet) session.get(UsersDataSet.class, name);
+        return ((UsersDataSet) session.get(UsersDataSet.class, name));
     }
 
     public long insertUser(String name, String password) throws HibernateException {
