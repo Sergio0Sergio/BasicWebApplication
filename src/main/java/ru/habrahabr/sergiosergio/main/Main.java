@@ -13,6 +13,7 @@ import ru.habrahabr.sergiosergio.dbService.DBService;
 import ru.habrahabr.sergiosergio.dbService.dataSets.UsersDataSet;
 import ru.habrahabr.sergiosergio.servlets.*;
 
+
 import javax.servlet.Servlet;
 import java.util.logging.Logger;
 
@@ -26,36 +27,38 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Logger logger = Logger.getLogger(Main.class.getName());
-
-        DBService dbService = new DBService();
-        //dbService.printConnectInfo();
-
-        try {
-            long userId = dbService.addUser("tully", "tully");
-            System.out.println("Added user id: " + userId);
-
-            UsersDataSet dataSet = dbService.getUser(userId);
-            System.out.println("User data set: " + dataSet);
-
-        } catch (DBException e) {
-            e.printStackTrace();
-        }
+        Server server = new Server(8080);
+//        DBService dbService = new DBService();
+//        //dbService.printConnectInfo();
+//
+//        try {
+//            long userId = dbService.addUser("tully", "tully");
+//            System.out.println("Added user id: " + userId);
+//
+//            UsersDataSet dataSet = dbService.getUser(userId);
+//            System.out.println("User data set: " + dataSet);
+//
+//        } catch (DBException e) {
+//            e.printStackTrace();
+//        }
 
 
         ServletContextHandler context = new ServletContextHandler (ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(new SignUpServlet(dbService)), "/signup");
-        context.addServlet(new ServletHolder(new SignInServlet(dbService)), "/signin");
+        //context.addServlet(new ServletHolder(new SignUpServlet(dbService)), "/signup");
+        //context.addServlet(new ServletHolder(new SignInServlet(dbService)), "/signin");
         context.addServlet(new ServletHolder(new WebSocketChatServlet()), "/chat");
 
 
         ResourceHandler resource_handler = new ResourceHandler();
         resource_handler.setDirectoriesListed(true);
         resource_handler.setResourceBase("public_html");
+        //resource_handler.setWelcomeFiles(new String[]{"index.html"});
 
         HandlerList handlers = new HandlerList();
         handlers.setHandlers(new Handler[]{resource_handler, context});
 
-        Server server = new Server(8080);
+
+
         server.setHandler(handlers);
 
         server.start();

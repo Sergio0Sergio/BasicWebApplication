@@ -1,7 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>L4.1: Jetty WebSocket Chat</title>
+    <meta charset="UTF-8">
+    <title>hz</title>
     <script type="text/javascript">
         var ws;
         function init() {
@@ -38,7 +39,7 @@
         <textarea id="messages" rows="20" cols="50" readonly="readonly"></textarea>
     </div>
 
-    <form name="message" action="" onsubmit="sendMessage();return false">
+    <form name="message" action="">
         <input name="usermsg" type="text" id="message" size="40"/>
         <input type="button" name="submitmsg" value="Send..." onclick="sendMessage();"/>
     </form>
