@@ -1,1 +1,2 @@
-java -jar tester.jar
+java -jar server.jar
+pause

@@ -59,6 +59,8 @@
     <orderEntry type="library" name="Maven: org.jboss.marshalling:jboss-marshalling-osgi:1.4.10.Final" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-ehcache:5.2.3.Final" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache:2.10.1" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.7.21" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
   </component>
 </module>

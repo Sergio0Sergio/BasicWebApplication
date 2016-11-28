@@ -1,5 +1,6 @@
 package ru.habrahabr.sergiosergio.main;
 
+import org.apache.log4j.BasicConfigurator;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
@@ -12,6 +13,7 @@ import ru.habrahabr.sergiosergio.dbService.DBException;
 import ru.habrahabr.sergiosergio.dbService.DBService;
 import ru.habrahabr.sergiosergio.dbService.dataSets.UsersDataSet;
 import ru.habrahabr.sergiosergio.servlets.*;
+
 
 
 import javax.servlet.Servlet;
@@ -27,6 +29,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Logger logger = Logger.getLogger(Main.class.getName());
+        BasicConfigurator.configure();
         Server server = new Server(8080);
 //        DBService dbService = new DBService();
 //        //dbService.printConnectInfo();
@@ -51,7 +54,7 @@ public class Main {
 
         ResourceHandler resource_handler = new ResourceHandler();
         resource_handler.setDirectoriesListed(true);
-        resource_handler.setResourceBase("public_html");
+        resource_handler.setResourceBase("public_html/index.html");
         //resource_handler.setWelcomeFiles(new String[]{"index.html"});
 
         HandlerList handlers = new HandlerList();
@@ -63,6 +66,7 @@ public class Main {
 
         server.start();
         server.join();
+        Thread.sleep(10000);
         logger.info("Server started");
     }
 
