@@ -65,9 +65,10 @@ public class Main {
         server.setHandler(handlers);
 
         server.start();
-        server.join();
         Thread.sleep(10000);
         logger.info("Server started");
+        server.join();
+
     }
 
 
